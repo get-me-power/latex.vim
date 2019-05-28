@@ -3,13 +3,14 @@ function! latex#run()
         echomsg 'texファイルを展開できません'
     else
         let latexfile = expand("%")
-        let dvifile = expand("%:r").'dvi'
         call system("platex ".latexfile)
-        call system("dvipdfmx ".dvifile)
+        call system("dvipdfmx ".expand('%:r'))
         if filereadable(expand("%:p:r").'.pdf')
             execute "OpenBrowser" expand("%:p:r"). '.pdf'
         else
-            echomsg 'pdfファイルが存在しません'
+            echoerr 'pdfファイルが存在しません'
+            let error = system("cat ".expand("%:p:r").'.log')
+            echo error
         endif
     endif
 endfunction
