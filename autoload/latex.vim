@@ -1,3 +1,10 @@
+if !exists('g:loaded_latex')
+    finish
+endif
+
+let s:save_cpo = &cpo
+set cpo&vim
+
 function! latex#run()
     if expand("%:e") != 'tex'
         echomsg 'texファイルを展開できません'
@@ -14,3 +21,6 @@ function! latex#run()
         endif
     endif
 endfunction
+
+let &cpo = s:save_cpo
+unlet s:save_cpo
