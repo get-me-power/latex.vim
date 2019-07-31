@@ -1,3 +1,6 @@
+" logファイル展開するときに，mattnさんのlet s:dir = expand('<sfile>:h:h') .
+" '/resources/' 使えないかなぁ?
+
 if !exists('g:loaded_latex')
     finish
 endif
